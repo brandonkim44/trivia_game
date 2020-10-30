@@ -120,8 +120,8 @@ button {
 
 /* Background gradient credits to Manuel Pinto*/
 body {
-	background: linear-gradient(-80deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-	background-size: 400% 400%;
+	background: linear-gradient(-90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 500%;
 	animation: gradient 25s ease infinite;
 }
 
@@ -135,4 +135,16 @@ body {
 	100% {
 		background-position: 0% 50%;
 	}
+}
+
+/* Answers */
+
+.answer-container {
+  cursor: pointer;
+}
+
+/* Boards */
+
+.submit-btn {
+  cursor: pointer;
 }
