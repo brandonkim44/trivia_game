@@ -143,6 +143,14 @@ body {
   cursor: pointer;
 }
 
+.answer-correct {
+  background-color: green;
+}
+
+.answer-incorrect {
+  background-color: red;
+}
+
 /* Boards */
 
 .submit-btn {

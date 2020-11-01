@@ -9,10 +9,12 @@ const Display = ({ questionNum}) => {
         return (
             <EndContainer />
         )
-    } else {
+    } else if (questionNum > 0 && questionNum <= 10){
         return (
             <BoardContainer />
         )
+    } else {
+        return null;
     }
 };
 

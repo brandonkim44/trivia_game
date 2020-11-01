@@ -13,6 +13,7 @@ const initialState = {
 const updateState = (state = initialState, action) => {
     Object.freeze(state);
     const stateCopy = Object.assign({}, state);
+    let questionBankCopy = [...state.questionBank];
     switch(action.type) {
         case UPDATE_QUESTION:
             let { questionBank, questionNum } = stateCopy;
@@ -30,10 +31,7 @@ const updateState = (state = initialState, action) => {
             score++;
             return Object.assign(stateCopy, { score });
         case RESTART_GAME:
-            let newQuestionBank = {
-                questionBank: triviaData
-            }
-            return Object.assign(initialState, newQuestionBank);
+            return Object.assign(initialState, );
         default:
             return state;
     }

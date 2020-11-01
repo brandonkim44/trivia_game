@@ -21,7 +21,6 @@ const Board = ({ currentQuestion, correctAnswer, incorrectAnswers, score, questi
 
     return(
         <div>
-            <Timer duration={30}/>
             <Score score={score}/>
             <Question 
                 currentQuestion={currentQuestion}
