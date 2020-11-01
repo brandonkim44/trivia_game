@@ -1,12 +1,12 @@
 import React from 'react';
 import Score from '../score/score';
 
-const End = ({ score, restartGame }) => {
+const End = ({ score, fetchTriviaQuestions }) => {
     return (
         <div>
             <Score score={score}/>
             END
-            <button onClick={() => restartGame()}>Play Again</button>
+            <button onClick={() => fetchTriviaQuestions()}>Play Again</button>
         </div>
     )
 }

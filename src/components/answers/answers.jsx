@@ -18,58 +18,35 @@ const Answers = ({ correctAnswer, incorrectAnswers, answers, incrementScoreAndUp
         return answerComponents;
     };
 
-
     const checkAnswer = (selectedAnswer) => {
-        debugger;
         if (selectedAnswer === correctAnswer) {
             setCurrentAnswer("correct");
-            debugger;
+
         } else {
             setCurrentAnswer("incorrect");
         }
-        // if selectedAnswer matches correctAnswer, then useState is updated for correctAnswer to be true
+    };
+
+    const renderNextQ = (dispatchFn) => {
+        setShowAnswer(true);
+        setTimeout(() => {
+            setShowAnswer(false);
+            setTimeLeft(30);
+            dispatchFn();
+        }, 3000);
     };
     
     const handleSubmit = (timeOut) => {
 
-        if (timeOut) currentAnswer = "incorrect";
-        
-        // let answerNodes = e.target.parentNode.childNodes;
-        
-        // const findCorrectNode = (answerNodes) => {
-            //     for (let i = 0; i < answerNodes.length - 1; i++) {
-                //         if (answerNodes[i].dataset.answer === correctAnswer) return answerNodes[i];
-                //     }
-                // }
-                
-                // let correctNode = findCorrectNode(answerNodes);
-                
+        if (timeOut && currentAnswer === "none") currentAnswer = "incorrect";
+    
         if (currentAnswer === "correct") {
-            setShowAnswer(true);
-            // correctNode.style.backgroundColor = 'white';
-            setTimeout(() => {
-                setShowAnswer(false);
-                setTimeLeft(30);
-                // correctNode.style.backgroundColor = "unset";
-                incrementScoreAndUpdate();
-            }, 3000);
-            //dispatch thunk score inc + updateQuestion
-            // alert("You are correct!")
+            renderNextQ(incrementScoreAndUpdate);
         } else if (currentAnswer === "incorrect"){
-            setShowAnswer(true);
-            // correctNode.style.backgroundColor = "white";
-            setTimeout(() => {
-                setShowAnswer(false);
-                setTimeLeft(30);
-                // correctNode.style.backgroundColor = "unset";
-                updateQuestion();
-            }, 3000);
-            //dispatch updateQuestion
-            // alert("You are incorrect!");
+            renderNextQ(updateQuestion);
         } else {
             alert("Please choose an answer");
         }
-        //if currentAnswer = true, then incrementScore, else show correctAnswer and don't incrementScore
     };
 
     return (

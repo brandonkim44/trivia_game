@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Modal } from './modal';
-import { updateQuestion } from "../../actions/actions";
+import { updateQuestion, fetchTriviaQuestions } from "../../actions/actions";
 
 const mapDispatchToProps = (dispatch) => {
     return({
-        updateQuestion: () => dispatch(updateQuestion())
+        updateQuestion: () => dispatch(updateQuestion()),
+        fetchTriviaQuestions: () => dispatch(fetchTriviaQuestions())
     });
 };
 

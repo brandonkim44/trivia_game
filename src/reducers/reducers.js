@@ -1,5 +1,5 @@
-import triviaData from '../data/Apprentice_TandemFor400_Data.json';
-import { UPDATE_QUESTION, INCREMENT_SCORE, RESTART_GAME } from '../actions/actions';
+import triviaData from '../data/triviaData.json';
+import { UPDATE_QUESTION, INCREMENT_SCORE, RESTART_GAME, START_GAME } from '../actions/actions';
 
 const initialState = {
     currentQuestion: null,
@@ -7,14 +7,16 @@ const initialState = {
     incorrectAnswers: null,
     score: 0,
     questionNum: 0,
-    questionBank: triviaData
 }
 
 const updateState = (state = initialState, action) => {
     Object.freeze(state);
     const stateCopy = Object.assign({}, state);
-    let questionBankCopy = [...state.questionBank];
     switch(action.type) {
+        case START_GAME:
+            let newInitialState = Object.assign({}, initialState);
+            let triviaQuestions = action.triviaQuestions;
+            return Object.assign(newInitialState, { questionBank: triviaQuestions });
         case UPDATE_QUESTION:
             let { questionBank, questionNum } = stateCopy;
             const newQuestion = updateQuestion(questionBank);
@@ -23,26 +25,31 @@ const updateState = (state = initialState, action) => {
                 currentQuestion: question,
                 correctAnswer: correct,
                 incorrectAnswers: incorrect,
-                questionNum: questionNum + 1
+                questionNum: questionNum + 1,
+                questionBank
             };
             return Object.assign(stateCopy, updatedQuestionData);
         case INCREMENT_SCORE:
             let { score } = stateCopy;
             score++;
             return Object.assign(stateCopy, { score });
-        case RESTART_GAME:
-            return Object.assign(initialState, );
         default:
             return state;
     }
 }
 
 const updateQuestion = (questionBank) => {
-    let numOfQs = questionBank.length;
-    let randomNum = Math.floor(Math.random() * numOfQs);
-    let questionData = triviaData[randomNum];
-    questionBank.splice(randomNum, 1);
-    return questionData;
+    return randomizeArray(questionBank).pop();
+}
+
+const randomizeArray = (array) => {
+    for (let currentIndex = array.length - 1; currentIndex > 0; currentIndex--) {
+        const randomIndex = Math.floor(Math.random() * (currentIndex + 1));
+        let temp = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temp;
+    }
+    return array;
 }
 
 export default updateState;

@@ -1,24 +1,22 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 
-const handleClick = (toggle, updateQuestion) => {
-    updateQuestion();
+const handleClick = (toggle, fetchTriviaQuestions) => {
+    fetchTriviaQuestions();
     toggle();
 };
 
-export const Modal = ({visible, toggle, updateQuestion}) => visible ? ReactDOM.createPortal(
-    <React.Fragment>
+export const Modal = ({visible, toggle, fetchTriviaQuestions}) => visible ? ReactDOM.createPortal(
+    <>
         <div className="modal-overlay">
-            <div className="modal-wrapper" aria-modal aria-hidden tabIndex={-1} role="dialog">
+            <div className="modal-wrapper">
                 <div className="modal">
-                    <div className="modal-header">
-                        <button type="button" className="modal-close-button" data-dismiss="modal" aria-label="Close" onClick={() => handleClick(toggle, updateQuestion)}>
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                    <div className="modal-container">
+                        <span>Brandon-Tandem Trivia!</span>
+                        <button onClick={() => handleClick(toggle, fetchTriviaQuestions)}>Start</button>
                     </div>
-                    <span>Brandons Triva Game</span>
                 </div>
             </div>
         </div>
-    </React.Fragment>, document.body
+    </>, document.body
 ) : null;

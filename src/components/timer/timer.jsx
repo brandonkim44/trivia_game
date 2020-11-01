@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import TimerBar from './timerBar';
 
-const Timer = ({ duration, checkAnswer, handleSubmit, currentAnswer, timeLeft, setTimeLeft }) => {
-//    const [resetTimer, setResetTimer] = useState(false);
+const Timer = ({ handleSubmit, timeLeft, setTimeLeft }) => {
    
     useEffect(() => {
         if (timeLeft === 0) {
@@ -18,9 +18,13 @@ const Timer = ({ duration, checkAnswer, handleSubmit, currentAnswer, timeLeft, s
         return () => clearInterval(timerId);
     }, [timeLeft]);
 
+    const timeToPercent = () => {
+        return (timeLeft / 30) * 100;
+    };
+
     return (
         <div>
-            {timeLeft}
+            <TimerBar percentage={timeToPercent()}/>
         </div>
     );
 };

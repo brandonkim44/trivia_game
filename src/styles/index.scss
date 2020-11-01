@@ -156,3 +156,11 @@ body {
 .submit-btn {
   cursor: pointer;
 }
+
+/* Timer */
+
+.filler {
+  background: white;
+  height: 10px;
+  transition: width .2s ease-in;
+}

@@ -1,6 +1,9 @@
+import * as APIUtil from '../utils/utils';
+
 export const UPDATE_QUESTION = 'UPDATE_QUESTION';
 export const INCREMENT_SCORE = 'INCREMENT_SCORE';
 export const RESTART_GAME = 'RESTART_GAME';
+export const START_GAME = 'START_GAME';
 
 export const updateQuestion = () => {
     return ({
@@ -20,7 +23,22 @@ export const restartGame = () => {
     });
 };
 
+export const startGame = (triviaQuestions) => {
+    return({
+        type: START_GAME,
+        triviaQuestions
+    });
+};
+
 export const incrementScoreAndUpdate = () => (dispatch) => {
     dispatch(incrementScore())
     dispatch(updateQuestion())
+};
+
+export const fetchTriviaQuestions = () => (dispatch) => {
+    APIUtil.fetchTriviaQuestions()
+        .then(triviaQuestions => {
+            dispatch(startGame(triviaQuestions))
+            dispatch(updateQuestion())
+        });
 };

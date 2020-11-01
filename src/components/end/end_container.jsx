@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import End from './end';
-import { restartGame } from '../../actions/actions';
+import { restartGame, fetchTriviaQuestions } from '../../actions/actions';
 
 const mapStateToProps = ({ score }) => {
     return ({
@@ -11,7 +11,8 @@ const mapStateToProps = ({ score }) => {
 
 const mapDispatchToProps = (dispatch) => {
     return ({
-        restartGame: () => dispatch(restartGame())
+        restartGame: () => dispatch(restartGame()),
+        fetchTriviaQuestions: () => dispatch(fetchTriviaQuestions())
     })
 };
 
