@@ -8,6 +8,7 @@ const Answers = ({ correctAnswer, incorrectAnswers, answers, incrementScoreAndUp
     let [currentAnswer, setCurrentAnswer] = useState("none");
     let [showAnswer, setShowAnswer] = useState(false);
     let [timeLeft, setTimeLeft] = useState(30);
+    let [stopTime, setStopTime] = useState(false);
 
     const renderAnswers = () => {
         const answerComponents = answers.map((answer, i) => {
@@ -21,7 +22,6 @@ const Answers = ({ correctAnswer, incorrectAnswers, answers, incrementScoreAndUp
     const checkAnswer = (selectedAnswer) => {
         if (selectedAnswer === correctAnswer) {
             setCurrentAnswer("correct");
-
         } else {
             setCurrentAnswer("incorrect");
         }
@@ -29,14 +29,21 @@ const Answers = ({ correctAnswer, incorrectAnswers, answers, incrementScoreAndUp
 
     const renderNextQ = (dispatchFn) => {
         setShowAnswer(true);
+        setStopTime(true);
         setTimeout(() => {
-            setShowAnswer(false);
+            let submit = document.querySelector(".submit-btn");
+            submit.disabled = false;
+            setStopTime(false);
+            setCurrentAnswer("none");
             setTimeLeft(30);
+            setShowAnswer(false);
             dispatchFn();
-        }, 3000);
+        }, 2000);
     };
     
     const handleSubmit = (timeOut) => {
+        let submit = document.querySelector('.submit-btn');
+        submit.disabled = true;
 
         if (timeOut && currentAnswer === "none") currentAnswer = "incorrect";
     
@@ -50,9 +57,9 @@ const Answers = ({ correctAnswer, incorrectAnswers, answers, incrementScoreAndUp
     };
 
     return (
-        <div>
+        <div className="answers-container">
             {renderAnswers()}
-            <Timer timeLeft={timeLeft} setTimeLeft={setTimeLeft} currentAnswer={currentAnswer} handleSubmit={handleSubmit} />
+            <Timer timeLeft={timeLeft} stopTime={stopTime} setTimeLeft={setTimeLeft} currentAnswer={currentAnswer} handleSubmit={handleSubmit} />
             <button className="submit-btn" onClick={() => handleSubmit()}>Submit</button>
         </div>
     );

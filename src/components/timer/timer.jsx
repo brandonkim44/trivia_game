@@ -1,20 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import TimerBar from './timerBar';
 
-const Timer = ({ handleSubmit, timeLeft, setTimeLeft }) => {
+const Timer = ({ handleSubmit, timeLeft, setTimeLeft, stopTime }) => {
    
     useEffect(() => {
-        if (timeLeft === 0) {
+        if (timeLeft === 0 && !stopTime) {
             handleSubmit(true);
             return;
         }
 
-        const timerId = setInterval(() => {
-            setTimeLeft(timeLeft - 1);
-        }, 1000);
+        let timerId = null;
 
+        const manageTimer = (stopTime) => {
+            if (stopTime) {
+                clearInterval(timerId);
+            } else {
+                timerId = setInterval(() => {
+                    setTimeLeft(timeLeft-1)
+                }, 1000)
+            }
+        };
+
+        manageTimer(stopTime);
+        
         //clean up side effect
-
         return () => clearInterval(timerId);
     }, [timeLeft]);
 
@@ -23,9 +32,9 @@ const Timer = ({ handleSubmit, timeLeft, setTimeLeft }) => {
     };
 
     return (
-        <div>
+        <>
             <TimerBar percentage={timeToPercent()}/>
-        </div>
+        </>
     );
 };
 

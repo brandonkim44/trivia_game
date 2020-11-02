@@ -3,10 +3,9 @@ import React from 'react';
 const Question = ({ currentQuestion, questionNum }) => {
 
     return (
-        <div>
-            <span>Question {questionNum}</span>
-            <br/>
-            <span>{currentQuestion}</span>
+        <div className="question-container">
+            <span className="question-num">Q{questionNum}: </span>
+            <span className="question-label">{currentQuestion}</span>
         </div>
     );
 };

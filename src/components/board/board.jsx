@@ -20,9 +20,9 @@ const Board = ({ currentQuestion, correctAnswer, incorrectAnswers, score, questi
     };
 
     return(
-        <div>
+        <div className="board-container">
             <Score score={score}/>
-            <Question 
+            <Question
                 currentQuestion={currentQuestion}
                 questionNum={questionNum}
             />
