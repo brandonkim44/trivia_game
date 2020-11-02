@@ -50,3 +50,241 @@ table {
 }
 
 /* CSS */
+
+
+$font-playfair: 'Playfair Display', serif;
+$font-chivo: 'Chivo', sans-serif;
+
+.App {
+  text-align: center;
+  padding-top: 2rem;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.4);
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  outline: 0;
+}
+
+.modal {
+  z-index: 100;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 3px;
+  max-width: 500px;
+  min-height: 200px;
+  padding: 2rem;
+  transform: translate(0, 50%);
+  border: 5px solid white;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+}
+
+.modal-container > h1 {
+  margin-bottom: 20px;
+  font-family: $font-playfair;
+  font-size: 40px;
+}
+
+.modal-container > span {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-family: $font-chivo;
+  font-weight: 300;
+}
+
+button {
+  font-size: 15px;
+  font-weight: 700;
+  border: none;
+  border-radius: 3px;
+  padding: .3rem 1rem;
+  width: 30%;
+  margin: 0 auto;
+  font-family: $font-chivo;
+  cursor: pointer;
+}
+
+button:hover {
+  background: black;
+  color: white;
+}
+
+/* Background gradient credits to Manuel Pinto*/
+body {
+	background: linear-gradient(-90deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 500%;
+	animation: gradient 25s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/* Answers */
+
+.answer-container {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin answers {
+  cursor: pointer;
+  margin-bottom: 20px;
+  border: 2px solid white;
+  border-radius: 3px;
+  padding: 10px;
+  font-size: 24px;
+  font-family: $font-chivo;
+}
+
+.answer-selected {
+  @include answers;
+  background-color: transparentize($color: black, $amount: 0.5);
+}
+
+.answer-not-selected {
+  @include answers;
+}
+
+.answer-correct {
+  @include answers;
+  background-color: transparentize($color: green, $amount: 0.3);
+}
+
+.answer-incorrect {
+  @include answers;
+  background-color: transparentize($color: red, $amount: 0.3);
+}
+
+.answer-not-selected:hover, 
+.answer-correct:hover, 
+.answer-incorrect:hover {
+  text-decoration: underline;
+}
+
+/* Boards */
+
+.board-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  color: white;
+  border: 5px solid white;
+  padding: 10px;
+}
+
+.submit-btn {
+  cursor: pointer;
+}
+
+/* Timer */
+
+.filler {
+  background: white;
+  height: 10px;
+  transition: width .2s ease-in;
+}
+
+.timer-bar {
+  margin-top: 5px;
+  margin-bottom: 15px;
+}
+
+/* Score */
+
+@mixin score {
+  font-size: 18px;
+  font-family: $font-chivo;
+  margin-bottom: 10px;  
+}
+
+.score-game {
+  @include score;
+  text-align: end;
+}
+
+.score-end {
+  @include score;
+  text-align: center;
+  font-size: 24px;
+}
+
+/* Question */
+
+.question-container {
+  margin-bottom: 20px;
+}
+
+.question-num {
+  font-family: $font-chivo;
+  font-size: 28px;
+}
+
+.question-label {
+  font-family: $font-playfair;
+  font-size: 24px;
+  font-weight: 900;
+  background-color: black;
+  padding: 5px;
+  line-height: 2;
+}
+
+.end-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 30%;
+  color: white;
+  border: 5px solid white;
+  padding: 10px;
+}
+
+.end-container > span {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-family: $font-playfair;
+  background-color: black;
+  font-size: 30px;
+  padding: 20px;
+}

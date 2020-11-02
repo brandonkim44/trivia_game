@@ -11,11 +11,12 @@ module.exports = {
     chunkLoading: false,
     wasmLoading: false,
   },
+  devtool: "inline-source-map",
   resolve: {
     extensions: [".js", ".jsx"],
   },
   optimization: {
-    minimize: true,
+    minimize: false,
   },
   module: {
     rules: [
