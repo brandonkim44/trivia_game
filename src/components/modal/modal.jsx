@@ -12,7 +12,10 @@ export const Modal = ({visible, toggle, fetchTriviaQuestions}) => visible ? Reac
             <div className="modal-wrapper">
                 <div className="modal">
                     <div className="modal-container">
-                        <span>Brandon-Tandem Trivia!</span>
+                        <h1>Brandon's Tandem Trivia</h1>
+                        <span>10 questions.</span>
+                        <span>30 seconds each.</span>
+                        <span>ready?</span>
                         <button onClick={() => handleClick(toggle, fetchTriviaQuestions)}>Start</button>
                     </div>
                 </div>

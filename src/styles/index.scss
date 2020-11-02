@@ -51,6 +51,11 @@ table {
 
 /* CSS */
 
+$font-lato: 'Lato', sans-serif;
+$font-prata: 'Prata', serif;
+$font-playfair: 'Playfair Display', serif;
+$font-chivo: 'Chivo', sans-serif;
+
 .App {
   text-align: center;
   padding-top: 2rem;
@@ -63,8 +68,7 @@ table {
   z-index: 1040;
   width: 100vw;
   height: 100vh;
-  background-color: #000;
-  opacity: .5;
+  background-color: rgba(0,0,0,0.4);
 }
 
 .modal-wrapper {
@@ -81,12 +85,14 @@ table {
 
 .modal {
   z-index: 100;
-  background: white;
   position: relative;
-  margin: 1.75rem auto;
+  margin: 0 auto;
   border-radius: 3px;
   max-width: 500px;
+  min-height: 200px;
   padding: 2rem;
+  transform: translate(0, 50%);
+  border: 5px solid white;
 }
 
 .modal-header {
@@ -94,14 +100,24 @@ table {
   justify-content: flex-end;
 }
 
-.modal-close-button {
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1;
-  color: #000;
-  opacity: .3;
-  cursor: pointer;
-  border: none;
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  color: white;
+}
+
+.modal-container > h1 {
+  margin-bottom: 20px;
+  font-family: $font-playfair;
+  font-size: 40px;
+}
+
+.modal-container > span {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-family: $font-chivo;
+  font-weight: 300;
 }
 
 button {
@@ -110,12 +126,13 @@ button {
   border: none;
   border-radius: 3px;
   padding: .3rem 1rem;
-  margin-left: .5rem;
+  width: 30%;
+  margin: 0 auto;
+  cursor: pointer;
 }
 
-.button-default {
-  background: #247BA0;
-  color: #fff;
+button:hover {
+  background: gray;
 }
 
 /* Background gradient credits to Manuel Pinto*/
