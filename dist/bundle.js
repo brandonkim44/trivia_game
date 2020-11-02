@@ -17340,8 +17340,9 @@ var Modal = function Modal(_ref) {
   }, "Start")))))), document.body) : null;
 };
 // CONCATENATED MODULE: ./src/utils/utils.js
+var proxyurl = "https://cors-anywhere.herokuapp.com/";
 var utils_fetchTriviaQuestions = function fetchTriviaQuestions() {
-  return fetch("/src/data/triviaData.json").then(function (res) {
+  return fetch(proxyurl + "https://github.com/brandonkim44/trivia_game/blob/main/src/data/triviaData.json?raw=true").then(function (res) {
     if (!res.ok) {
       throw new Error("HTTP Error " + res.status);
     }
