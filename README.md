@@ -4,7 +4,7 @@ This trivia game is a product of a coding challenge from Tandem. A 10-question m
 
 ## Installation
 
-Please clone this repo and then run:
+Please clone this repo or download it as a zip file, and then run:
 
 `npm install`
 
